@@ -73,12 +73,19 @@ class OTPTester:
         ttk.Label(row, text="Repeat Count").pack(side="left")
 
         self.repeat = tk.IntVar(value=5)
-        self.repeat_entry = ttk.Spinbox(
+        self.repeat_entry = tk.Spinbox(
             row,
             from_=1,
             to=500,
             textvariable=self.repeat,
             width=8,
+            bg="#f8fafc",
+            fg="#0f172a",
+            insertbackground="#0f172a",
+            buttonbackground="#cbd5e1",
+            relief="flat",
+            borderwidth=0,
+            font=("Segoe UI", 10),
         )
         self.repeat_entry.pack(side="left", padx=10)
 
@@ -100,18 +107,18 @@ class OTPTester:
 
         ttk.Label(card, text="Live Log").pack(anchor="w")
 
+        log_frame = ttk.Frame(card, style="Card.TFrame")
+        log_frame.pack(fill="both", expand=True, pady=(0, 4))
+
         self.log = tk.Text(
-            card,
+            log_frame,
             bg="#020617",
             fg="#e2e8f0",
             height=18,
             relief="flat",
             font=("Consolas", 10),
         )
-        log_frame = ttk.Frame(card, style="Card.TFrame")
-        log_frame.pack(fill="both", expand=True)
-
-        self.log.pack(in_=log_frame, side="left", fill="both", expand=True)
+        self.log.pack(side="left", fill="both", expand=True)
         log_scrollbar = ttk.Scrollbar(
             log_frame,
             orient="vertical",
@@ -215,7 +222,7 @@ class OTPTester:
             self.root.after(
                 0,
                 lambda: messagebox.showinfo(
-                    "Finished", "Rate limit test completed."
+                    "Finished", "sms sent."
                 ),
             )
 
