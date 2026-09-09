@@ -20,8 +20,8 @@ Enumerates sjcet sms services to send message to anyone we want with bulk sendin
 Clone the repository and enter its directory:
 
 ```bash
-git clone https://github.com/abin-karukappallil/sjcet-sms-bomber.git
-cd sjcet-sms-bomber
+git clone https://github.com/abin-karukappallil/SJCET-SMS-BOMBER.git
+cd SJCET-SMS-BOMBER
 ```
 
 Install `uv` if it is not already installed:
