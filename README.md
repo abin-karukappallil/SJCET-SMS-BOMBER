@@ -2,6 +2,13 @@
 
 Enumerates sjcet sms services to send message to anyone we want with bulk sending + repeated sending options..Send sms contains only otp....Use this for fun in your friends circle...
 
+## Demo 
+
+![alt text](image.png)
+
+
+# How to use
+
 ## Requirements
 
 - Python
