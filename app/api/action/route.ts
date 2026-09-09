@@ -25,9 +25,6 @@ export async function POST(req: NextRequest) {
     headers: req.headers,
   });
 
-  if (!session?.user) {
-    return new Response('Unauthorized', { status: 401 });
-  }
 
   const origin = req.headers.get('origin');
   const allowedOrigin = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
