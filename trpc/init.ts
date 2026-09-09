@@ -2,15 +2,15 @@ import { initTRPC, TRPCError } from '@trpc/server';
 import { getAuth } from '@/lib/auth';
 import { getDb } from '@/db';
 import { rateLimit } from '@/db/schema';
-import { getOptionalRequestContext } from '@cloudflare/next-on-pages';
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 import superjson from 'superjson';
 import { headers } from 'next/headers';
 import { eq, and, gte, count } from 'drizzle-orm';
 
 export const createContext = async () => {
   const reqHeaders = await headers();
-  const ctx = getOptionalRequestContext();
-  const env = ctx?.env as any;
+  const cf = getCloudflareContext();
+  const env = cf?.env as any;
   
   const db = env?.DB ? getDb(env.DB) : null;
   const auth = db ? getAuth(db) : null;
