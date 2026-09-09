@@ -1,0 +1,50 @@
+{
+  "name": "prostack",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.64.0",
+    "@trpc/client": "^11.0.0-rc.344",
+    "@trpc/react-query": "^11.0.0-rc.344",
+    "@trpc/server": "^11.0.0-rc.344",
+    "better-auth": "latest",
+    "cheerio": "^1.2.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "drizzle-orm": "latest",
+    "lucide-react": "latest",
+    "next": "^16.2.11",
+    "radix-ui": "^1.6.2",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "superjson": "^2.2.1",
+    "tailwind-merge": "^2.6.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.16",
+    "@cloudflare/workers-types": "^4.20260702.1",
+    "@tailwindcss/postcss": "latest",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "drizzle-kit": "latest",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.4",
+    "shadcn": "latest",
+    "tailwindcss": "latest",
+    "typescript": "^5",
+    "vercel": "^32.4.1",
+    "wrangler": "^4.130.0"
+  }
+}
