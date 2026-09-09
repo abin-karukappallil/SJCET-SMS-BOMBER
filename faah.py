@@ -16,6 +16,7 @@ class OTPTester:
         self.root.minsize(620, 500)
         self.root.resizable(True, True)
         self.root.configure(bg="#0f172a")
+        self.root.protocol("WM_DELETE_WINDOW", self.close_program)
 
         self.success = 0
         self.failed = 0
@@ -30,7 +31,22 @@ class OTPTester:
                              font=("Segoe UI", 18, "bold"))
         self.style.configure("TButton",
                              font=("Segoe UI", 10, "bold"),
-                             padding=8)
+                             padding=8,
+                             background="#334155",
+                             foreground="#f8fafc")
+        self.style.map(
+            "TButton",
+            background=[
+                ("disabled", "#475569"),
+                ("pressed", "#0f766e"),
+                ("active", "#14b8a6"),
+            ],
+            foreground=[
+                ("disabled", "#94a3b8"),
+                ("pressed", "#ffffff"),
+                ("active", "#ffffff"),
+            ],
+        )
         self.style.configure("TEntry",
                              fieldbackground="#334155",
                              foreground="white")
@@ -96,6 +112,13 @@ class OTPTester:
         )
         self.start_btn.pack(side="right")
 
+        self.close_btn = ttk.Button(
+            row,
+            text="Close",
+            command=self.close_program,
+        )
+        self.close_btn.pack(side="right", padx=(0, 10))
+
         stat = ttk.Frame(card, style="Card.TFrame")
         stat.pack(fill="x", pady=(0, 12))
 
@@ -139,6 +162,9 @@ class OTPTester:
             0,
             lambda: self.success_lbl.config(text=f"Success: {self.success}"),
         )
+
+    def close_program(self):
+        self.root.destroy()
         self.root.after(
             0,
             lambda: self.failed_lbl.config(text=f"Failed: {self.failed}"),
