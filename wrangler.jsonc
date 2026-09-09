@@ -1,0 +1,26 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"main": ".open-next/worker.js",
+	"name": "sjcet-sms-bomber",
+	"compatibility_date": "2026-09-08",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "sjcetsms",
+			"database_id": "5e4f61f3-b6e3-45a0-93f0-2be7182abce5",
+			"migrations_dir": "migrations"
+		}
+	],
+	"vars": {
+		"NEXT_PUBLIC_APP_URL": "https://sjcet-sms-bomber.abinthomasggllc.workers.dev",
+		"BETTER_AUTH_URL": "https://sjcet-sms-bomber.abinthomasggllc.workers.dev"
+	}
+}

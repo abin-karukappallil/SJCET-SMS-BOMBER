@@ -2,17 +2,17 @@ import { NextRequest } from 'next/server';
 import { getAuth } from '@/lib/auth';
 import { getDb } from '@/db';
 import { rateLimit } from '@/db/schema';
-import { getOptionalRequestContext } from '@cloudflare/next-on-pages';
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { eq, and, gte, count } from 'drizzle-orm';
 import { runBombSequence } from '@/lib/bomb';
 
-export const runtime = "edge";
+
 
 const MAX_REQUESTS = 5;
 const WINDOW_SECONDS = 60;
 
 export async function POST(req: NextRequest) {
-  const ctx = getOptionalRequestContext();
+  const ctx = getCloudflareContext();
   const env = ctx?.env as any;
   const db = env?.DB ? getDb(env.DB) : null;
   const auth = db ? getAuth(db) : null;

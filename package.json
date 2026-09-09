@@ -3,16 +3,21 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "db:studio": "drizzle-kit studio",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.20.6",
     "@tanstack/react-query": "^5.64.0",
     "@trpc/client": "^11.0.0-rc.344",
     "@trpc/react-query": "^11.0.0-rc.344",
@@ -32,7 +37,6 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.13.16",
     "@cloudflare/workers-types": "^4.20260702.1",
     "@tailwindcss/postcss": "latest",
     "@types/node": "^20",
