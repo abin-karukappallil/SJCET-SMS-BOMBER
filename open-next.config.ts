@@ -11,6 +11,9 @@ const config: OpenNextConfig = {
       queue: "dummy",
     },
   },
+  dangerous: {
+    disableIncrementalCache: true,
+  },
   edgeExternals: ["node:crypto"],
   middleware: {
     external: true,
