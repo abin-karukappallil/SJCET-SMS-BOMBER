@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
   const ctx = getCloudflareContext();
   const env = ctx?.env as any;
   const db = env?.DB ? getDb(env.DB) : null;
-  const auth = db ? getAuth(db) : null;
+  const auth = db ? getAuth(db, env) : null;
 
   if (!db || !auth) {
     return new Response('Internal Server Error', { status: 500 });
@@ -25,10 +25,9 @@ export async function POST(req: NextRequest) {
     headers: req.headers,
   });
 
-
   const origin = req.headers.get('origin');
-  const allowedOrigin = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-  if (origin && !origin.startsWith(allowedOrigin) && process.env.NODE_ENV === 'production') {
+  const allowedOrigin = env?.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://sjcet-sms-bomber.abinthomasggllc.workers.dev';
+  if (origin && !origin.includes('sjcet-sms-bomber.abinthomasggllc.workers.dev') && !origin.startsWith(allowedOrigin) && !origin.includes('localhost') && process.env.NODE_ENV === 'production') {
     return new Response('Forbidden', { status: 403 });
   }
 

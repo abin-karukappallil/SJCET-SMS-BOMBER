@@ -13,7 +13,7 @@ export const createContext = async () => {
   const env = cf?.env as any;
   
   const db = env?.DB ? getDb(env.DB) : null;
-  const auth = db ? getAuth(db) : null;
+  const auth = db ? getAuth(db, env) : null;
 
   let session = null;
   if (auth) {
@@ -30,6 +30,7 @@ export const createContext = async () => {
     session,
     ip,
     origin,
+    env,
   };
 };
 
@@ -60,8 +61,8 @@ export const protectedProcedure = t.procedure.use(loggerMiddleware).use(async ({
   }
 
   // Origin Validation
-  const allowedOrigin = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-  if (ctx.origin && !ctx.origin.startsWith(allowedOrigin) && process.env.NODE_ENV === 'production') {
+  const allowedOrigin = ctx.env?.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://sjcet-sms-bomber.abinthomasggllc.workers.dev';
+  if (ctx.origin && !ctx.origin.includes('sjcet-sms-bomber.abinthomasggllc.workers.dev') && !ctx.origin.startsWith(allowedOrigin) && !ctx.origin.includes('localhost') && process.env.NODE_ENV === 'production') {
     throw new TRPCError({ code: 'FORBIDDEN', message: 'Invalid origin' });
   }
 

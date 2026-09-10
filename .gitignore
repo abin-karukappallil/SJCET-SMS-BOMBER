@@ -46,6 +46,7 @@ next-env.d.ts
 
 /.vscode
 # OpenNext
+.open-next
 
 # wrangler files
 .wrangler
